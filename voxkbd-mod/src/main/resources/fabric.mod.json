@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "voxkbd",
+  "version": "${version}",
+  "name": "Vox Kbd",
+  "description": "Virtual keyboards: an infinitely extensible key layer for modpacks without touching vanilla bindings.",
+  "authors": ["VoxKbd"],
+  "contact": {},
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.voxkbd.mod.VoxKbdMod",
+      "com.voxkbd.mod.ClientEntrypoint"
+    ]
+  },
+  "mixins": ["voxkbd.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": ">=26.2",
+    "fabric-api": "*"
+  }
+}

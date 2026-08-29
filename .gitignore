@@ -1,0 +1,45 @@
+# ---- Gradle / Loom ----
+.gradle/
+build/
+**/build/
+build-core/
+build-core-test/
+build-daemon/
+build-daemon-test/
+build-mixin/
+build-mod-core/
+build-smoke/
+
+# ---- Loom dev runs (per-user, contain absolute local paths) ----
+runs/
+
+# ---- Runtime logs / caches (local-only) ----
+logs/
+*.log
+cells.log
+
+# ---- Build artifacts / verification jars ----
+*.class
+/libs/
+jars/*/
+.voxkbd-build/
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+!docs/**/*.jar
+
+# ---- IDE ----
+.idea/
+*.iml
+.vscode/
+
+# ---- OS ----
+Thumbs.db
+.DS_Store
+
+# ---- FCL reference source (downloaded locally for reading only) ----
+其他项目/
+
+# ---- Local harness files that always end up in the project root by accident ----
+voxkbd_args.txt
+voxkbd_cp.txt
+voxkbd_mc_stdout.log
