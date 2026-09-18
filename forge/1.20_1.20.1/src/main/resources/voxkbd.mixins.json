@@ -1,0 +1,14 @@
+{
+  "required": false,
+  "minVersion": "0.8.5",
+  "package": "com.voxkbd.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+    "KeyMappingAccessor",
+    "VoxKbdHudMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  },
+  "refmap": "voxkbd.refmap.json"
+}

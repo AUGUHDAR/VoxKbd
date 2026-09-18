@@ -1,0 +1,12 @@
+{
+  "modrinth": {
+    "token": "在 modrinth.com/settings/pats 创建 Personal Access Token（勾选 Write）后粘贴到这里",
+    "project_id": "VoxKbd = IGxAOAYv"
+  },
+  "curseforge": {
+    "api_key": "console.curseforge.com 的 Core API key（仅用于查询去重，不能上传）",
+    "project_id": "项目数字 ID（VoxKbd = 1674735）",
+    "upload_token": "authors-old.curseforge.com/account/api-tokens 生成的 UUID token（上传必须用它）"
+  },
+  "changelog_file": "changelog-1.0.1.md"
+}

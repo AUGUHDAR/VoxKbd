@@ -1,0 +1,95 @@
+buildscript {
+    repositories {
+        maven {
+            name = 'SpongePowered'
+            url = 'https://repo.spongepowered.org/repository/maven-public/'
+        }
+        maven {
+            name = 'MinecraftForge'
+            url = 'https://maven.minecraftforge.net/'
+        }
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.spongepowered:mixingradle:0.7.38'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'idea'
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+}
+
+apply plugin: 'org.spongepowered.mixin'
+
+version = "1.0.1-1.20.2_1.20.4-forge"
+group = "com.voxkbd"
+base { archivesName = "voxkbd" }
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+minecraft {
+    mappings channel: 'official', version: '1.20.4'
+}
+
+mixin {
+    add sourceSets.main, 'voxkbd.refmap.json'
+    config 'voxkbd.mixins.json'
+}
+
+repositories {
+    maven {
+        name = 'MinecraftForge'
+        url = 'https://maven.minecraftforge.net/'
+    }
+    maven {
+        name = 'SpongePowered'
+        url = 'https://repo.spongepowered.org/repository/maven-public/'
+    }
+    mavenCentral()
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:1.20.4-49.2.8"
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+}
+
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+        minecraft_version      : '1.20.4',
+        minecraft_version_range: '[1.20.2,1.20.5)',
+        forge_version          : '49.2.8',
+        forge_version_range    : '[48,50)',
+        loader_version_range   : '[2,)',
+        mod_id                 : 'voxkbd',
+        mod_version            : '1.0.1',
+        mod_license            : 'MIT',
+    ]
+    inputs.properties replaceProperties
+    filesMatching(['META-INF/mods.toml']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+tasks.named('jar', Jar).configure {
+    manifest {
+        attributes([
+                'Specification-Title'    : 'voxkbd',
+                'Specification-Vendor'   : 'VoxKbd',
+                'Specification-Version'  : '1',
+                'Implementation-Title'   : 'Vox Kbd',
+                'Implementation-Version' : project.version,
+                'MixinConfigs'           : 'voxkbd.mixins.json'
+        ])
+    }
+    from("../../LICENSE") {}
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 17
+}
+
+// Forge 1.20.2+ runs official mappings at runtime; keep the jar un-reobfed.
+tasks.matching { it.name == 'reobfJar' }.configureEach { enabled = false }

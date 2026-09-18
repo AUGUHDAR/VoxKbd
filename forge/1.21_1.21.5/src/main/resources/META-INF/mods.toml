@@ -1,0 +1,26 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+license = "MIT"
+
+[[mods]]
+modId = "voxkbd"
+version = "1.0.1"
+displayName = "Vox Kbd"
+authors = "VoxKbd"
+description = '''
+Virtual keyboards: an infinitely extensible key layer for modpacks without touching vanilla bindings.
+'''
+
+[[dependencies.voxkbd]]
+modId = "forge"
+mandatory = true
+versionRange = "[51,56)"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.voxkbd]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.21,1.21.6)"
+ordering = "NONE"
+side = "CLIENT"

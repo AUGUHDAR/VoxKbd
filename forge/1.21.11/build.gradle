@@ -1,0 +1,62 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'net.minecraftforge.gradle' version '7.0.31'
+}
+
+version = "1.0.1-1.21.11-forge"
+group = "com.voxkbd"
+base { archivesName = "voxkbd" }
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+minecraft {
+    mappings channel: 'official', version: '1.21.11'
+}
+
+repositories {
+    minecraft.mavenizer(it)
+    maven fg.forgeMaven
+    maven fg.minecraftLibsMaven
+    mavenCentral()
+}
+
+dependencies {
+    implementation minecraft.dependency("net.minecraftforge:forge:1.21.11-61.1.14")
+}
+
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+        minecraft_version      : '1.21.11',
+        minecraft_version_range: '[1.21.11,1.22)',
+        forge_version          : '61.1.14',
+        forge_version_range    : '[61,)',
+        loader_version_range   : '[2,)',
+        mod_id                 : 'voxkbd',
+        mod_version            : '1.0.1',
+        mod_license            : 'MIT',
+    ]
+    inputs.properties replaceProperties
+    filesMatching(['META-INF/mods.toml']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+tasks.named('jar', Jar).configure {
+    manifest {
+        attributes([
+                'Specification-Title'    : 'voxkbd',
+                'Specification-Vendor'   : 'VoxKbd',
+                'Specification-Version'  : '1',
+                'Implementation-Title'   : 'Vox Kbd',
+                'Implementation-Version' : project.version,
+                'MixinConfigs'           : 'voxkbd.mixins.json'
+        ])
+    }
+    from("../../LICENSE") {}
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
+}

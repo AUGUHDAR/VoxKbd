@@ -24,13 +24,29 @@ cells.log
 jars/*/
 .voxkbd-build/
 *.jar
-!gradle/wrapper/gradle-wrapper.jar
+!**/gradle/wrapper/gradle-wrapper.jar
 !docs/**/*.jar
+
+# ---- Port generator scratch ----
+# port/shared is the generator's source and IS tracked; the per-target trees it emits now live in
+# fabric/ forge/ neoforge/, and these older flat dirs plus the build logs are leftovers.
+port/build-logs/
+port/fabric-*/
+port/forge-*/
+port/neoforge-*/
+tools/__pycache__/
+
+# ---- Publish credentials (never commit) ----
+tools/publish/config.json
+tools/publish/_cf_*
 
 # ---- IDE ----
 .idea/
 *.iml
 .vscode/
+
+# ---- Agent workspace ----
+.workbuddy/
 
 # ---- OS ----
 Thumbs.db

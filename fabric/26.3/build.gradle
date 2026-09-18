@@ -1,0 +1,50 @@
+plugins {
+    id 'net.fabricmc.fabric-loom' version '1.15.5'
+}
+
+version = "1.0.1-26.3-fabric"
+group = "com.voxkbd"
+base { archivesName = "voxkbd" }
+
+repositories {
+    mavenCentral()
+}
+
+loom {
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:26.3"
+    implementation "net.fabricmc:fabric-loader:0.19.5"
+    implementation "net.fabricmc.fabric-api:fabric-api:0.160.6+26.3"
+}
+
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+        mod_id            : "voxkbd",
+        mod_version       : "1.0.1",
+        minecraft_version : "26.3",
+        minecraft_version_range: ">=26.3 <=26.99",
+        version           : project.version,
+    ]
+    inputs.properties replaceProperties
+    filesMatching(['fabric.mod.json']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+    it.options.release = 25
+}
+
+java {
+    withSourcesJar()
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+jar {
+    from("../../LICENSE") {}
+}

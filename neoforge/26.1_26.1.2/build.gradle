@@ -1,0 +1,65 @@
+plugins {
+    id 'net.neoforged.moddev' version '2.0.143'
+}
+
+version = "1.0.1-26.1_26.1.2-neoforge"
+group = "com.voxkbd"
+base { archivesName = "voxkbd" }
+
+repositories {
+    maven {
+        name = 'Minecraft libraries'
+        url = 'https://libraries.minecraft.net'
+    }
+    mavenCentral()
+}
+
+neoForge {
+    enable {
+        version = project.neo_version
+        disableRecompilation = true
+    }
+
+    runs {
+        client { client() }
+        server { server() }
+    }
+
+    mods {
+        "voxkbd" {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+        mod_id                 : 'voxkbd',
+        mod_version            : '1.0.1',
+        mod_license            : 'MIT',
+        minecraft_version      : '26.1.2',
+        minecraft_version_range: '[26.1,26.2)',
+        neo_version_range      : '[26.1,)',
+        loader_version_range   : '[1,)',
+    ]
+    inputs.properties replaceProperties
+    filesMatching(['META-INF/neoforge.mods.toml']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+    it.options.release = 25
+}
+
+java {
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
+}
+
+jar {
+    manifest.attributes(['MixinConfigs': 'voxkbd.mixins.json'])
+    from("../../LICENSE") {}
+}

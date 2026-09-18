@@ -1,0 +1,74 @@
+plugins {
+    id 'net.neoforged.moddev.legacyforge' version '2.0.143'
+}
+
+version = "1.0.1-1.20.1-neoforge"
+group = "com.voxkbd"
+base { archivesName = "voxkbd" }
+
+repositories {
+    maven {
+        name = 'Minecraft libraries'
+        url = 'https://libraries.minecraft.net'
+    }
+    mavenCentral()
+}
+
+legacyForge {
+    enable {
+        forgeVersion = project.neo_version
+        disableRecompilation = true
+    }
+
+    runs {
+        client { client() }
+        server { server() }
+    }
+
+    mods {
+        "voxkbd" {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+dependencies {
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+}
+
+mixin {
+    add sourceSets.main, 'voxkbd.refmap.json'
+    config 'voxkbd.mixins.json'
+}
+
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+        mod_id                 : 'voxkbd',
+        mod_version            : '1.0.1',
+        mod_license            : 'MIT',
+        minecraft_version      : '1.20.1',
+        minecraft_version_range: '[1.20.1,1.20.2)',
+        neo_version_range      : '[47.3.0,)',
+        loader_version_range   : '[1,)',
+    ]
+    inputs.properties replaceProperties
+    filesMatching(['META-INF/mods.toml']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+    it.options.release = 17
+}
+
+java {
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+jar {
+    manifest.attributes(['MixinConfigs': 'voxkbd.mixins.json'])
+    from("../../LICENSE") {}
+}
