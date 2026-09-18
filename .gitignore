@@ -36,9 +36,9 @@ port/forge-*/
 port/neoforge-*/
 tools/__pycache__/
 
-# ---- Publish credentials (never commit) ----
+# ---- Publish credentials and local state (never commit) ----
 tools/publish/config.json
-tools/publish/_cf_*
+tools/publish/_*
 
 # ---- IDE ----
 .idea/
