@@ -21,9 +21,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class VoxKbdHudMixin {
 
     @Inject(method = "render", at = @At("TAIL"))
-    private void voxkbd$drawAlwaysShowTab(GuiGraphics guiGraphics, CallbackInfo ci) {
+    private void voxkbd$drawAlwaysShowTab(GuiGraphics guiGraphics, float partialTick, CallbackInfo ci) {
         try {
-            ModRuntime.onHudRender(guiGraphics, 0.0f);
+            ModRuntime.onHudRender(guiGraphics, partialTick);
         } catch (Throwable ignored) {
             // The tab is cosmetic — never break the HUD.
         }

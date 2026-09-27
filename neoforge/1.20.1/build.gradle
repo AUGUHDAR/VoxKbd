@@ -2,7 +2,7 @@ plugins {
     id 'net.neoforged.moddev.legacyforge' version '2.0.143'
 }
 
-version = "1.0.1-1.20.1-neoforge"
+version = "1.1.2-beta-1.20.1-neoforge"
 group = "com.voxkbd"
 base { archivesName = "voxkbd" }
 
@@ -44,7 +44,7 @@ mixin {
 tasks.withType(ProcessResources).configureEach {
     var replaceProperties = [
         mod_id                 : 'voxkbd',
-        mod_version            : '1.0.1',
+        mod_version            : '1.1.2-beta',
         mod_license            : 'MIT',
         minecraft_version      : '1.20.1',
         minecraft_version_range: '[1.20.1,1.20.2)',

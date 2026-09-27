@@ -16,6 +16,7 @@ import com.voxkbd.mod.screencompat.ScreenCompat;
 import com.voxkbd.mod.switch_.SwitchManager;
 import com.voxkbd.mod.ui.ConfigScreen;
 import com.voxkbd.mod.ui.MasterScreen;
+import com.voxkbd.mod.update.UpdateChecker;
 import net.minecraft.client.Minecraft;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -133,6 +134,8 @@ public final class ModRuntime {
             LOGGER.info("Android runtime detected: in-process GLFW translation (mixin backend).");
         }
 
+        UpdateChecker.maybeStart(configDir);
+
         LOGGER.info("Vox Kbd initialized (android={})", android);
     }
 
@@ -164,6 +167,7 @@ public final class ModRuntime {
 
     /** Loader client-tick hook (Fabric ClientTickEvents / Forge TickEvent / NeoForge ClientTickEvent). */
     public static void onClientTick(Minecraft client) {
+        UpdateChecker.tick();
         // Screen gating: while any MC Screen (chat / inventory / menus) is open, capture backends
         // pass every key through natively so GUI typing and menu keys are never hijacked (§3.2).
         inputState.setPaused(client.gui.screen() != null);

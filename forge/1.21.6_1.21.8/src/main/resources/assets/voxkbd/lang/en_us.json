@@ -81,5 +81,6 @@
   "voxkbd.ui.editor.name": "Keyboard name",
   "voxkbd.ui.editor.desc": "Keyboard description",
   "voxkbd.kb.0.desc": "Your native keyboard",
-  "voxkbd.kb.default": "Keyboard %s"
+  "voxkbd.kb.default": "Keyboard %s",
+  "voxkbd.update.available": "[Vox Kbd] New version %s available - download: "
 }

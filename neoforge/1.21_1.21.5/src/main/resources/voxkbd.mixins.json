@@ -5,7 +5,8 @@
   "compatibilityLevel": "JAVA_17",
   "client": [
     "KeyMappingAccessor",
-    "VoxKbdHudMixin"
+    "VoxKbdHudMixin",
+    "VoxKbdKeyCallbackMixin"
   ],
   "injectors": {
     "defaultRequire": 0

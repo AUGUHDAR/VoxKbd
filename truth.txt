@@ -1,0 +1,162 @@
+==== 1.20
+   Gui: 160:370:void render(net.minecraft.client.gui.GuiGraphics,float) -> a
+   Gui: 1256:1256:net.minecraft.client.gui.components.ChatComponent getChat() -> d
+   InputConstants: 477:479:void setupKeyboardCallbacks(long,org.lwjgl.glfw.GLFWKeyCallbackI,org.lwjgl.glfw.GLFWCharModsCallbackI) -> a
+   Chat: 203:204:void addMessage(net.minecraft.network.chat.Component) -> a
+   Chat: 207:209:void addMessage(net.minecraft.network.chat.Component,net.minecraft.network.chat.MessageSignature,net.minecraft.client.GuiMessageTag)
+   Chat: 222:252:void addMessage(net.minecraft.network.chat.Component,net.minecraft.network.chat.MessageSignature,int,net.minecraft.client.GuiMessage
+   KeyHandler: 326:456:void keyPress(long,int,int,int,int) -> a
+   Category class: no
+==== 1.20.1
+   Gui: 160:370:void render(net.minecraft.client.gui.GuiGraphics,float) -> a
+   Gui: 1256:1256:net.minecraft.client.gui.components.ChatComponent getChat() -> d
+   InputConstants: 477:479:void setupKeyboardCallbacks(long,org.lwjgl.glfw.GLFWKeyCallbackI,org.lwjgl.glfw.GLFWCharModsCallbackI) -> a
+   Chat: 203:204:void addMessage(net.minecraft.network.chat.Component) -> a
+   Chat: 207:209:void addMessage(net.minecraft.network.chat.Component,net.minecraft.network.chat.MessageSignature,net.minecraft.client.GuiMessageTag)
+   Chat: 222:252:void addMessage(net.minecraft.network.chat.Component,net.minecraft.network.chat.MessageSignature,int,net.minecraft.client.GuiMessage
+   KeyHandler: 326:456:void keyPress(long,int,int,int,int) -> a
+   Category class: no
+==== 1.20.2
+   Gui: 189:399:void render(net.minecraft.client.gui.GuiGraphics,float) -> a
+   Gui: 1351:1351:net.minecraft.client.gui.components.ChatComponent getChat() -> d
+   InputConstants: 477:479:void setupKeyboardCallbacks(long,org.lwjgl.glfw.GLFWKeyCallbackI,org.lwjgl.glfw.GLFWCharModsCallbackI) -> a
+   Chat: 206:207:void addMessage(net.minecraft.network.chat.Component) -> a
+   Chat: 210:212:void addMessage(net.minecraft.network.chat.Component,net.minecraft.network.chat.MessageSignature,net.minecraft.client.GuiMessageTag)
+   Chat: 225:255:void addMessage(net.minecraft.network.chat.Component,net.minecraft.network.chat.MessageSignature,int,net.minecraft.client.GuiMessage
+   KeyHandler: 336:465:void keyPress(long,int,int,int,int) -> a
+   Category class: no
+==== 1.20.3
+   Gui: 191:401:void render(net.minecraft.client.gui.GuiGraphics,float) -> a
+   Gui: 1355:1355:net.minecraft.client.gui.components.ChatComponent getChat() -> d
+   InputConstants: 477:479:void setupKeyboardCallbacks(long,org.lwjgl.glfw.GLFWKeyCallbackI,org.lwjgl.glfw.GLFWCharModsCallbackI) -> a
+   Chat: 206:207:void addMessage(net.minecraft.network.chat.Component) -> a
+   Chat: 210:212:void addMessage(net.minecraft.network.chat.Component,net.minecraft.network.chat.MessageSignature,net.minecraft.client.GuiMessageTag)
+   Chat: 225:255:void addMessage(net.minecraft.network.chat.Component,net.minecraft.network.chat.MessageSignature,int,net.minecraft.client.GuiMessage
+   KeyHandler: 336:471:void keyPress(long,int,int,int,int) -> a
+   Category class: no
+==== 1.20.4
+   Gui: 191:401:void render(net.minecraft.client.gui.GuiGraphics,float) -> a
+   Gui: 1355:1355:net.minecraft.client.gui.components.ChatComponent getChat() -> d
+   InputConstants: 477:479:void setupKeyboardCallbacks(long,org.lwjgl.glfw.GLFWKeyCallbackI,org.lwjgl.glfw.GLFWCharModsCallbackI) -> a
+   Chat: 206:207:void addMessage(net.minecraft.network.chat.Component) -> a
+   Chat: 210:212:void addMessage(net.minecraft.network.chat.Component,net.minecraft.network.chat.MessageSignature,net.minecraft.client.GuiMessageTag)
+   Chat: 225:255:void addMessage(net.minecraft.network.chat.Component,net.minecraft.network.chat.MessageSignature,int,net.minecraft.client.GuiMessage
+   KeyHandler: 336:471:void keyPress(long,int,int,int,int) -> a
+   Category class: no
+==== 1.20.5
+   Gui: 216:219:void render(net.minecraft.client.gui.GuiGraphics,float) -> a
+   Gui: 1410:1410:net.minecraft.client.gui.components.ChatComponent getChat() -> d
+   InputConstants: 477:479:void setupKeyboardCallbacks(long,org.lwjgl.glfw.GLFWKeyCallbackI,org.lwjgl.glfw.GLFWCharModsCallbackI) -> a
+   Chat: 207:208:void addMessage(net.minecraft.network.chat.Component) -> a
+   Chat: 211:215:void addMessage(net.minecraft.network.chat.Component,net.minecraft.network.chat.MessageSignature,net.minecraft.client.GuiMessageTag)
+   KeyHandler: 340:482:void keyPress(long,int,int,int,int) -> a
+   Category class: no
+==== 1.20.6
+   Gui: 216:219:void render(net.minecraft.client.gui.GuiGraphics,float) -> a
+   Gui: 1410:1410:net.minecraft.client.gui.components.ChatComponent getChat() -> d
+   InputConstants: 477:479:void setupKeyboardCallbacks(long,org.lwjgl.glfw.GLFWKeyCallbackI,org.lwjgl.glfw.GLFWCharModsCallbackI) -> a
+   Chat: 207:208:void addMessage(net.minecraft.network.chat.Component) -> a
+   Chat: 211:215:void addMessage(net.minecraft.network.chat.Component,net.minecraft.network.chat.MessageSignature,net.minecraft.client.GuiMessageTag)
+   KeyHandler: 340:482:void keyPress(long,int,int,int,int) -> a
+   Category class: no
+==== 1.21
+   Gui: 217:220:void render(net.minecraft.client.gui.GuiGraphics,net.minecraft.client.DeltaTracker) -> a
+   Gui: 1402:1402:net.minecraft.client.gui.components.ChatComponent getChat() -> d
+   InputConstants: 477:479:void setupKeyboardCallbacks(long,org.lwjgl.glfw.GLFWKeyCallbackI,org.lwjgl.glfw.GLFWCharModsCallbackI) -> a
+   Chat: 208:209:void addMessage(net.minecraft.network.chat.Component) -> a
+   Chat: 212:216:void addMessage(net.minecraft.network.chat.Component,net.minecraft.network.chat.MessageSignature,net.minecraft.client.GuiMessageTag)
+   KeyHandler: 339:478:void keyPress(long,int,int,int,int) -> a
+   Category class: no
+==== 1.21.1
+   Gui: 217:220:void render(net.minecraft.client.gui.GuiGraphics,net.minecraft.client.DeltaTracker) -> a
+   Gui: 1402:1402:net.minecraft.client.gui.components.ChatComponent getChat() -> d
+   InputConstants: 477:479:void setupKeyboardCallbacks(long,org.lwjgl.glfw.GLFWKeyCallbackI,org.lwjgl.glfw.GLFWCharModsCallbackI) -> a
+   Chat: 208:209:void addMessage(net.minecraft.network.chat.Component) -> a
+   Chat: 212:216:void addMessage(net.minecraft.network.chat.Component,net.minecraft.network.chat.MessageSignature,net.minecraft.client.GuiMessageTag)
+   KeyHandler: 339:478:void keyPress(long,int,int,int,int) -> a
+   Category class: no
+==== 1.21.2
+   Gui: 234:235:void render(net.minecraft.client.gui.GuiGraphics,net.minecraft.client.DeltaTracker) -> a
+   Gui: 1417:1417:net.minecraft.client.gui.components.ChatComponent getChat() -> d
+   InputConstants: 477:479:void setupKeyboardCallbacks(long,org.lwjgl.glfw.GLFWKeyCallbackI,org.lwjgl.glfw.GLFWCharModsCallbackI) -> a
+   Chat: 211:212:void addMessage(net.minecraft.network.chat.Component) -> a
+   Chat: 215:219:void addMessage(net.minecraft.network.chat.Component,net.minecraft.network.chat.MessageSignature,net.minecraft.client.GuiMessageTag)
+   KeyHandler: 347:496:void keyPress(long,int,int,int,int) -> a
+   Category class: no
+==== 1.21.3
+   Gui: 234:235:void render(net.minecraft.client.gui.GuiGraphics,net.minecraft.client.DeltaTracker) -> a
+   Gui: 1417:1417:net.minecraft.client.gui.components.ChatComponent getChat() -> d
+   InputConstants: 477:479:void setupKeyboardCallbacks(long,org.lwjgl.glfw.GLFWKeyCallbackI,org.lwjgl.glfw.GLFWCharModsCallbackI) -> a
+   Chat: 211:212:void addMessage(net.minecraft.network.chat.Component) -> a
+   Chat: 215:219:void addMessage(net.minecraft.network.chat.Component,net.minecraft.network.chat.MessageSignature,net.minecraft.client.GuiMessageTag)
+   KeyHandler: 347:496:void keyPress(long,int,int,int,int) -> a
+   Category class: no
+==== 1.21.4
+   Gui: 234:235:void render(net.minecraft.client.gui.GuiGraphics,net.minecraft.client.DeltaTracker) -> a
+   Gui: 1417:1417:net.minecraft.client.gui.components.ChatComponent getChat() -> d
+   InputConstants: 477:479:void setupKeyboardCallbacks(long,org.lwjgl.glfw.GLFWKeyCallbackI,org.lwjgl.glfw.GLFWCharModsCallbackI) -> a
+   Chat: 213:214:void addMessage(net.minecraft.network.chat.Component) -> a
+   Chat: 217:221:void addMessage(net.minecraft.network.chat.Component,net.minecraft.network.chat.MessageSignature,net.minecraft.client.GuiMessageTag)
+   KeyHandler: 347:496:void keyPress(long,int,int,int,int) -> a
+   Category class: no
+==== 1.21.5
+   Gui: 235:236:void render(net.minecraft.client.gui.GuiGraphics,net.minecraft.client.DeltaTracker) -> a
+   Gui: 1419:1419:net.minecraft.client.gui.components.ChatComponent getChat() -> d
+   InputConstants: 477:479:void setupKeyboardCallbacks(long,org.lwjgl.glfw.GLFWKeyCallbackI,org.lwjgl.glfw.GLFWCharModsCallbackI) -> a
+   Chat: 213:214:void addMessage(net.minecraft.network.chat.Component) -> a
+   Chat: 217:221:void addMessage(net.minecraft.network.chat.Component,net.minecraft.network.chat.MessageSignature,net.minecraft.client.GuiMessageTag)
+   KeyHandler: 347:502:void keyPress(long,int,int,int,int) -> a
+   Category class: no
+==== 1.21.6
+   Gui: 219:241:void render(net.minecraft.client.gui.GuiGraphics,net.minecraft.client.DeltaTracker) -> a
+   Gui: 1370:1370:net.minecraft.client.gui.components.ChatComponent getChat() -> e
+   InputConstants: 477:479:void setupKeyboardCallbacks(long,org.lwjgl.glfw.GLFWKeyCallbackI,org.lwjgl.glfw.GLFWCharModsCallbackI) -> a
+   Chat: 214:215:void addMessage(net.minecraft.network.chat.Component) -> a
+   Chat: 218:222:void addMessage(net.minecraft.network.chat.Component,net.minecraft.network.chat.MessageSignature,net.minecraft.client.GuiMessageTag)
+   KeyHandler: 365:520:void keyPress(long,int,int,int,int) -> a
+   Category class: no
+==== 1.21.7
+   Gui: 219:241:void render(net.minecraft.client.gui.GuiGraphics,net.minecraft.client.DeltaTracker) -> a
+   Gui: 1370:1370:net.minecraft.client.gui.components.ChatComponent getChat() -> e
+   InputConstants: 477:479:void setupKeyboardCallbacks(long,org.lwjgl.glfw.GLFWKeyCallbackI,org.lwjgl.glfw.GLFWCharModsCallbackI) -> a
+   Chat: 214:215:void addMessage(net.minecraft.network.chat.Component) -> a
+   Chat: 218:222:void addMessage(net.minecraft.network.chat.Component,net.minecraft.network.chat.MessageSignature,net.minecraft.client.GuiMessageTag)
+   KeyHandler: 365:520:void keyPress(long,int,int,int,int) -> a
+   Category class: no
+==== 1.21.8
+   Gui: 219:241:void render(net.minecraft.client.gui.GuiGraphics,net.minecraft.client.DeltaTracker) -> a
+   Gui: 1370:1370:net.minecraft.client.gui.components.ChatComponent getChat() -> e
+   InputConstants: 477:479:void setupKeyboardCallbacks(long,org.lwjgl.glfw.GLFWKeyCallbackI,org.lwjgl.glfw.GLFWCharModsCallbackI) -> a
+   Chat: 214:215:void addMessage(net.minecraft.network.chat.Component) -> a
+   Chat: 218:222:void addMessage(net.minecraft.network.chat.Component,net.minecraft.network.chat.MessageSignature,net.minecraft.client.GuiMessageTag)
+   KeyHandler: 365:520:void keyPress(long,int,int,int,int) -> a
+   Category class: no
+==== 1.21.9
+   Gui: 222:246:void render(net.minecraft.client.gui.GuiGraphics,net.minecraft.client.DeltaTracker) -> a
+   Gui: 1380:1380:net.minecraft.client.gui.components.ChatComponent getChat() -> e
+   InputConstants: 484:486:void setupKeyboardCallbacks(com.mojang.blaze3d.platform.Window,org.lwjgl.glfw.GLFWKeyCallbackI,org.lwjgl.glfw.GLFWCharModsCallbackI) -> a
+   Chat: 219:220:void addMessage(net.minecraft.network.chat.Component) -> a
+   Chat: 223:227:void addMessage(net.minecraft.network.chat.Component,net.minecraft.network.chat.MessageSignature,net.minecraft.client.GuiMessageTag)
+   KeyHandler: 397:555:void keyPress(long,int,net.minecraft.client.input.KeyEvent) -> a
+   Category class: YES
+==== 1.21.10
+   Gui: 222:246:void render(net.minecraft.client.gui.GuiGraphics,net.minecraft.client.DeltaTracker) -> a
+   Gui: 1380:1380:net.minecraft.client.gui.components.ChatComponent getChat() -> e
+   InputConstants: 484:486:void setupKeyboardCallbacks(com.mojang.blaze3d.platform.Window,org.lwjgl.glfw.GLFWKeyCallbackI,org.lwjgl.glfw.GLFWCharModsCallbackI) -> a
+   Chat: 219:220:void addMessage(net.minecraft.network.chat.Component) -> a
+   Chat: 223:227:void addMessage(net.minecraft.network.chat.Component,net.minecraft.network.chat.MessageSignature,net.minecraft.client.GuiMessageTag)
+   KeyHandler: 397:555:void keyPress(long,int,net.minecraft.client.input.KeyEvent) -> a
+   Category class: YES
+==== 1.21.11
+   Gui: 219:243:void render(net.minecraft.client.gui.GuiGraphics,net.minecraft.client.DeltaTracker) -> a
+   Gui: 1377:1377:net.minecraft.client.gui.components.ChatComponent getChat() -> e
+   InputConstants: 494:496:void setupKeyboardCallbacks(com.mojang.blaze3d.platform.Window,org.lwjgl.glfw.GLFWKeyCallbackI,org.lwjgl.glfw.GLFWCharModsCallbackI) -> a
+   Chat: 251:252:void addMessage(net.minecraft.network.chat.Component) -> a
+   Chat: 255:259:void addMessage(net.minecraft.network.chat.Component,net.minecraft.network.chat.MessageSignature,net.minecraft.client.GuiMessageTag)
+   KeyHandler: 402:585:void keyPress(long,int,net.minecraft.client.input.KeyEvent) -> a
+   Category class: YES
+26.1 NO client.txt
+26.1.1 NO client.txt
+26.1.2 NO client.txt
+26.2 NO client.txt
+26.3 NO client.txt

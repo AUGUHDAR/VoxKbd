@@ -81,5 +81,6 @@
   "voxkbd.ui.editor.name": "虚拟键盘名称",
   "voxkbd.ui.editor.desc": "虚拟键盘描述",
   "voxkbd.kb.0.desc": "你的原生键盘",
-  "voxkbd.kb.default": "键盘 %s"
+  "voxkbd.kb.default": "键盘 %s",
+  "voxkbd.update.available": "[Vox Kbd] 发现新版本 %s，下载："
 }

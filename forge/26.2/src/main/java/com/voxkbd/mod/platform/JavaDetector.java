@@ -33,13 +33,34 @@ public final class JavaDetector {
     /** GLFW-independent stable GLFW modifier bits used only for sanity; not user-facing. */
     private static final String[] EXE_NAMES = {"java", "java.exe"};
 
-    /** Returns true when running on an Android JVM (Dalvik/ART). */
+    /**
+     * Returns true when running on an Android JVM — either Dalvik/ART itself, or a full desktop
+     * OpenJDK that a Pojav-family launcher (FCL / ZL2) started inside an Android app process.
+     * Those launchers pass {@code -Dos.version=Android-XX} and {@code -Dpojav.path.*} on the game
+     * command line and {@code /system/build.prop} always exists under Android, while none of the
+     * three holds on a desktop Linux — so desktop false-positives are impossible.
+     */
     public static boolean isAndroid() {
         String vmName = System.getProperty("java.vm.name", "");
         String vmVendor = System.getProperty("java.vm.vendor", "");
         String rtName = System.getProperty("java.runtime.name", "");
-        return vmName.contains("Dalvik") || vmName.contains("Android")
-                || vmVendor.contains("Android") || rtName.contains("Android");
+        if (vmName.contains("Dalvik") || vmName.contains("Android")
+                || vmVendor.contains("Android") || rtName.contains("Android")) {
+            return true;
+        }
+        String osVersion = System.getProperty("os.version", "");
+        if (osVersion.startsWith("Android-") || osVersion.startsWith("android-")) {
+            return true;
+        }
+        if (System.getProperty("pojav.path.minecraft") != null
+                || System.getProperty("glfwstub.initEgl") != null) {
+            return true;
+        }
+        try {
+            return Files.exists(Paths.get("/system/build.prop"));
+        } catch (Throwable t) {
+            return false;
+        }
     }
 
     /**
