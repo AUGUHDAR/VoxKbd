@@ -9,6 +9,7 @@ import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
+import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.win32.StdCallLibrary;
 
 import java.util.HashSet;
@@ -47,6 +48,9 @@ public final class WindowsKeyboardHookJna implements PhysicalInputCapture {
         int UnhookWindowsHookEx(Pointer hhk);
         Pointer CallNextHookEx(Pointer hhk, int nCode, ULONG_PTR wParam, LPARAM lParam);
         int GetMessageW(Pointer lpMsg, Pointer hWnd, int wMsgFilterMin, int wMsgFilterMax);
+        Pointer GetForegroundWindow();
+        int GetWindowThreadProcessId(Pointer hWnd, IntByReference lpdwProcessId);
+        int GetCurrentProcessId();
         short GetAsyncKeyState(int vKey);
         int PostThreadMessageW(int idThread, int msg, ULONG_PTR wParam, ULONG_PTR lParam);
         int GetCurrentThreadId();
@@ -89,6 +93,13 @@ public final class WindowsKeyboardHookJna implements PhysicalInputCapture {
     private static final int GLFW_MOD_SUPER = 0x0008;
 
     private final InputState state;
+
+    /** This JVM's process id — the hook only ever acts for this process's own window. */
+    private final int myPid = currentPid();
+
+    private static int currentPid() {
+        try { return User32.INSTANCE.GetCurrentProcessId(); } catch (Throwable t) { return 0; }
+    }
 
     /** Currently-held VKs, to distinguish auto-repeat (action 2) from fresh presses (action 1). */
     private final Set<Integer> downVks = new HashSet<>();
@@ -154,7 +165,11 @@ public final class WindowsKeyboardHookJna implements PhysicalInputCapture {
                     int vk = info.vkCode;
                     boolean extended = (info.flags & WinVkMap.LLKHF_EXTENDED) != 0;
                     PhysicalKey pk = WinVkMap.physicalKeyOfWinVk(vk, extended);
-                    if (shouldCapture(pk, down)) {
+                    // Never act for another application: unless the OS foreground window belongs
+                    // to this Minecraft process, the event is passed straight down the chain.
+                    if (!foregroundIsMinecraft()) {
+                        synchronized (downVks) { downVks.clear(); }
+                    } else if (shouldCapture(pk, down)) {
                         sink.accept(new CapturedKey(pk, captureAction(vk, down), currentMods(), vk));
                         return new ULONG_PTR(1); // suppress native delivery
                     }
@@ -170,6 +185,20 @@ public final class WindowsKeyboardHookJna implements PhysicalInputCapture {
             return new ULONG_PTR(Pointer.nativeValue(result));
         } catch (Throwable t) {
             return new ULONG_PTR(0);
+        }
+    }
+
+    /** True only while the OS foreground window belongs to this Minecraft process. */
+    private boolean foregroundIsMinecraft() {
+        if (myPid == 0) return false;
+        try {
+            Pointer fg = User32.INSTANCE.GetForegroundWindow();
+            if (fg == null || Pointer.nativeValue(fg) == 0) return false;
+            IntByReference pid = new IntByReference();
+            User32.INSTANCE.GetWindowThreadProcessId(fg, pid);
+            return pid.getValue() == myPid;
+        } catch (Throwable t) {
+            return false;
         }
     }
 

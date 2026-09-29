@@ -2,7 +2,7 @@ plugins {
     id 'net.neoforged.moddev' version '2.0.143'
 }
 
-version = "1.1.2-beta-1.21.9_1.21.10-neoforge"
+version = "1.0.3-1.21.9_1.21.10-neoforge"
 group = "com.voxkbd"
 base { archivesName = "voxkbd" }
 
@@ -35,7 +35,7 @@ neoForge {
 tasks.withType(ProcessResources).configureEach {
     var replaceProperties = [
         mod_id                 : 'voxkbd',
-        mod_version            : '1.1.2-beta',
+        mod_version            : '1.0.3',
         mod_license            : 'MIT',
         minecraft_version      : '1.21.10',
         minecraft_version_range: '[1.21.9,1.21.11)',

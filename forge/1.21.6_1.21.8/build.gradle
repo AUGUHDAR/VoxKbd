@@ -4,7 +4,7 @@ plugins {
     id 'net.minecraftforge.gradle' version '[7.0.3,8)'
 }
 
-version = "1.1.2-beta-1.21.6_1.21.8-forge"
+version = "1.0.3-1.21.6_1.21.8-forge"
 group = "com.voxkbd"
 base { archivesName = "voxkbd" }
 
@@ -33,7 +33,7 @@ tasks.withType(ProcessResources).configureEach {
         forge_version_range    : '[58,59)',
         loader_version_range   : '[2,)',
         mod_id                 : 'voxkbd',
-        mod_version            : '1.1.2-beta',
+        mod_version            : '1.0.3',
         mod_license            : 'MIT',
     ]
     inputs.properties replaceProperties

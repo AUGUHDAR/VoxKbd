@@ -79,6 +79,12 @@ public final class WindowsKeyboardHook implements PhysicalInputCapture {
                     ValueLayout.JAVA_LONG, ValueLayout.JAVA_LONG));
     private static final MethodHandle GET_CURRENT_THREAD_ID = downcall("GetCurrentThreadId",
             FunctionDescriptor.of(ValueLayout.JAVA_INT));
+    private static final MethodHandle GET_FOREGROUND_WINDOW = downcall("GetForegroundWindow",
+            FunctionDescriptor.of(ValueLayout.ADDRESS));
+    private static final MethodHandle GET_WINDOW_THREAD_PROCESS_ID = downcall("GetWindowThreadProcessId",
+            FunctionDescriptor.of(ValueLayout.JAVA_INT, ValueLayout.ADDRESS, ValueLayout.ADDRESS));
+    private static final MethodHandle GET_CURRENT_PROCESS_ID = downcall("GetCurrentProcessId",
+            FunctionDescriptor.of(ValueLayout.JAVA_INT));
 
     /** LRESULT(int nCode, WPARAM wParam, LPARAM lParam): WPARAM is a plain pointer-width int,
      *  LPARAM arrives holding a pointer to KBDLLHOOKSTRUCT and therefore maps to ADDRESS/MemorySegment. */
@@ -99,6 +105,27 @@ public final class WindowsKeyboardHook implements PhysicalInputCapture {
     private static final int GLFW_MOD_SUPER = 0x0008;
 
     private final InputState state;
+
+    /** This JVM's process id — the hook only ever acts for this process's own window. */
+    private final int processId = currentPid();
+
+    private static int currentPid() {
+        try { return (int) GET_CURRENT_PROCESS_ID.invokeExact(); } catch (Throwable t) { return 0; }
+    }
+
+    /** True only while the OS foreground window belongs to this Minecraft process. */
+    private boolean foregroundIsMinecraft() {
+        if (processId == 0) return false;
+        try (Arena arena = Arena.ofConfined()) {
+            MemorySegment fg = (MemorySegment) GET_FOREGROUND_WINDOW.invokeExact();
+            if (fg == null || fg.equals(MemorySegment.NULL)) return false;
+            MemorySegment pidOut = arena.allocate(ValueLayout.JAVA_INT);
+            GET_WINDOW_THREAD_PROCESS_ID.invokeExact(fg, pidOut);
+            return pidOut.get(ValueLayout.JAVA_INT, 0) == processId;
+        } catch (Throwable t) {
+            return false;
+        }
+    }
 
     /** Currently-held VKs, to distinguish auto-repeat (action 2) from fresh presses (action 1). */
     private final Set<Integer> downVks = new HashSet<>();
@@ -181,7 +208,11 @@ public final class WindowsKeyboardHook implements PhysicalInputCapture {
                     int flags = info.get(ValueLayout.JAVA_INT, 8);
                     boolean extended = (flags & WinVkMap.LLKHF_EXTENDED) != 0;
                     PhysicalKey pk = WinVkMap.physicalKeyOfWinVk(vk, extended);
-                    if (shouldCapture(pk, down)) {
+                    // Never act for another application: unless the OS foreground window belongs
+                    // to this Minecraft process, the event is passed straight down the chain.
+                    if (!foregroundIsMinecraft()) {
+                        synchronized (downVks) { downVks.clear(); }
+                    } else if (shouldCapture(pk, down)) {
                         sink.accept(new CapturedKey(pk, captureAction(vk, down), currentMods(), vk));
                         return 1L; // suppress native delivery
                     }

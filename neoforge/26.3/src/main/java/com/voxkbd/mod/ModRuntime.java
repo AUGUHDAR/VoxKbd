@@ -172,6 +172,11 @@ public final class ModRuntime {
         // Screen gating: while any MC Screen (chat / inventory / menus) is open, capture backends
         // pass every key through natively so GUI typing and menu keys are never hijacked (§3.2).
         inputState.setPaused(client.gui.screen() != null);
+        // Desktop capture follows window focus: the OS keyboard hook exists only while the
+        // Minecraft window is the foreground window (no interception outside the game).
+        if (!android) {
+            InProcessCapture.onFocus(inputState.focus());
+        }
         // Bind capture (v0.5): while the vanilla key-binds screen is open, lift ONLY the
         // capture backends' GUI pass-through — the lock rules themselves are untouched.
         inputState.setBindCapture(client.gui.screen() != null
